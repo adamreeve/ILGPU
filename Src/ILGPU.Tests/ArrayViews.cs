@@ -25,6 +25,8 @@ namespace ILGPU.Tests
         public void ArrayViewValid(int length)
         {
             using var buffer = Accelerator.Allocate<int>(length);
+            // Fixed
+            Execute(length, buffer.View);
 
             var expected = Enumerable.Repeat(2, length).ToArray();
             Verify(buffer, expected);
